@@ -5,11 +5,11 @@ import java.sql.Connection;
 
 public class DBConnector {
 
-    private SQLServerDataSource ds;
+    private final SQLServerDataSource ds = new SQLServerDataSource();
 
 
-    private DBConnector()
-    { ds = new SQLServerDataSource();
+    public DBConnector()
+    {
         ds.setServerName("10.176.111.31");
         ds.setUser("CSe20B_6");
         ds.setPassword("CSe20B_6");
