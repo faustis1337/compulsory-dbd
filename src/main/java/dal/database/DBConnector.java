@@ -8,7 +8,7 @@ public class DBConnector {
     private SQLServerDataSource ds;
 
 
-    private DBConnector()
+    public DBConnector()
     { ds = new SQLServerDataSource();
         ds.setServerName("10.176.111.31");
         ds.setUser("CSe20B_6");
