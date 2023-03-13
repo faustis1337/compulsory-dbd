@@ -54,17 +54,21 @@ public class CompanyRepository implements ICompanyRepository {
     }
 
     @Override
-    public void UpdateDepartmentName(String dName, int dNumber) {
+    public int UpdateDepartmentName(String dName, int dNumber) {
         CallableStatement cstmt;
         try{
             String sql = "EXEC usp_UpdateDepartmentName ?,?";
             cstmt = databaseConnector.getConnection().prepareCall (sql);
             cstmt.setString(1,dName);
             cstmt.setInt(2,dNumber);
-            cstmt.execute();
+            int rowsAffected = cstmt.executeUpdate();
+            if(rowsAffected>0){
+                return 1;
+            }
         } catch (SQLException e) {
             System.out.println(e);
         }
+        return -1;
     }
 
     @Override
