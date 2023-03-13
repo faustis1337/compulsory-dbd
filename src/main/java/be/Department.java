@@ -3,10 +3,10 @@ package be;
 import java.sql.Date;
 
 public class Department {
-    private String dName;
-    private int dNumber;
-    private int mgrSSN;
-    private Date mgrStartDate;
+    public String dName;
+    public int dNumber;
+    public int mgrSSN;
+    public Date mgrStartDate;
     public int empCount;
 
     public Department(String dName, int dNumber, int mgrSSN, Date mgrStartDate, int empCount) {
