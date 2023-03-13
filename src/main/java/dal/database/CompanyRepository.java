@@ -35,7 +35,7 @@ public class CompanyRepository implements ICompanyRepository {
             cstmt = databaseConnector.getConnection().prepareCall (sql);
             cstmt.setInt(1,dNumber);
             cstmt.execute();
-            ResultSet resultSet = cstmt.executeQuery();
+            ResultSet resultSet = cstmt.getResultSet();
 
             while (resultSet.next()) {
                 String dName = resultSet.getString("DName");
