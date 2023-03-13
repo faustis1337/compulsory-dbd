@@ -8,7 +8,7 @@ public interface ICompanyRepository {
     int deleteDepartment(int departmentId);
     int updateDepartmentManager(int departmentNumber,int managerSSN);
     List<Department> getAllDepartments();
-    Department GetDepartmentByDNumber(int dNumber);
-    int UpdateDepartmentName(String dName, int dNumber);
-    int CreateDepartment(String dName, int dgrSSN );
+    Department getDepartmentByDNumber(int dNumber);
+    int updateDepartmentName(String dName, int dNumber);
+    int createDepartment(String dName, int dgrSSN );
 }
