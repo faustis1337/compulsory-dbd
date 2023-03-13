@@ -46,7 +46,7 @@ public class Main {
         String newDepartmentName = scanner.nextLine();
         System.out.println("Pls enter the new Department  MgrSSN: ");
         int departmentNumber = scanner.nextInt();
-        if (companyRepository.createDepartment(newDepartmentName,departmentNumber)){
+        if (companyRepository.createDepartment(newDepartmentName,departmentNumber) == 1){
             System.out.println("Department updated"+ departmentNumber);
         }else {
             System.out.println("Failed to update the department Name!");
@@ -57,7 +57,7 @@ public class Main {
         String newDepartmentName = scanner.nextLine();
         System.out.println("Pls enter the department Number: ");
         int departmentNumber = scanner.nextInt();
-        if (companyRepository.updateDepartmentName(newDepartmentName,departmentNumber)){
+        if (companyRepository.updateDepartmentName(newDepartmentName,departmentNumber)>1){
             System.out.println("Department updated"+ departmentNumber);
         }else {
             System.out.println("Failed to update the department Name!");
@@ -67,7 +67,7 @@ public class Main {
     public static void showGetDepartment(){
         System.out.println("Pls enter the new Department Number: ");
         int departmentNumber = scanner.nextInt();
-        if (companyRepository.getDepartmentByDNumber(departmentNumber)){
+        if (companyRepository.getDepartmentByDNumber(departmentNumber) =){
             System.out.println("Department updated"+ departmentNumber);
         }else {
             System.out.println("Failed to update the department Name!");
