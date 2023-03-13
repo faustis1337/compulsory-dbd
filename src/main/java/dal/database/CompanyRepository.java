@@ -7,6 +7,7 @@ import java.sql.CallableStatement;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class CompanyRepository implements ICompanyRepository {
     private static final DBConnector databaseConnector = new DBConnector();
@@ -69,11 +70,13 @@ public class CompanyRepository implements ICompanyRepository {
     @Override
     public void CreateDepartment(String dName, int mGrSSN) {
         CallableStatement cstmt;
+        Date date = Date.valueOf(LocalDate.now());
         try{
-            String sql = "EXEC usp_CreateDepartment ?,?";
+            String sql = "EXEC usp_CreateDepartment ?,?,?";
             cstmt = databaseConnector.getConnection().prepareCall (sql);
             cstmt.setString(1,dName);
             cstmt.setInt(2,mGrSSN);
+            cstmt.setDate( 3, date);
             cstmt.execute();
         } catch (SQLException e) {
             System.out.println(e);
