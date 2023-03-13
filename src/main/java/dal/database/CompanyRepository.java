@@ -8,6 +8,8 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CompanyRepository implements ICompanyRepository {
     private static final DBConnector databaseConnector = new DBConnector();
@@ -21,11 +23,9 @@ public class CompanyRepository implements ICompanyRepository {
             cstmt.execute();
             return departmentId;
         } catch (SQLException e) {
-            System.out.println(e);
             return -1;
         }
     }
-
     @Override
     public Department GetDepartmentByDNumber(int dNumber){
         CallableStatement cstmt;
@@ -82,4 +82,38 @@ public class CompanyRepository implements ICompanyRepository {
             System.out.println(e);
         }
     }
+
+    @Override
+    public int updateDepartmentManager(int departmentNumber, int managerSSN) {
+        CallableStatement cstmt;
+        try{
+            String sql = "EXEC dbo.usp_UpdateDepartmentManager ?, ?";
+            cstmt = databaseConnector.getConnection().prepareCall (sql);
+            cstmt.setInt(1,departmentNumber);
+            cstmt.setInt(2,managerSSN);
+            int rowsAffected = cstmt.executeUpdate();
+            if(rowsAffected>0){
+                return 1;
+            }
+        } catch (SQLException ignored) {}
+        return -1;
+    }
+
+    @Override
+    public List<Department> getAllDepartments() {
+        List<Department> departmentList = new ArrayList<>();
+
+        CallableStatement cstmt;
+        try{
+            String sql = "EXEC dbo.usp_GetAllDepartments";
+            cstmt = databaseConnector.getConnection().prepareCall (sql);
+            cstmt.execute();
+            ResultSet rs = cstmt.getResultSet();
+            while(rs.next()){
+                departmentList.add(new Department(rs.getString("Dname"),rs.getInt("Dnumber"),rs.getInt("MgrSSN"),rs.getDate("MgrStartDate"),rs.getInt("EmpCount")));
+            }
+        } catch (SQLException ignored) {}
+        return departmentList;
+    }
+
 }
