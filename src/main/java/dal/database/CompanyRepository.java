@@ -27,7 +27,7 @@ public class CompanyRepository implements ICompanyRepository {
         }
     }
     @Override
-    public Department GetDepartmentByDNumber(int dNumber){
+    public Department getDepartmentByDNumber(int dNumber){
         CallableStatement cstmt;
         Department temp = null;
         try{
@@ -35,7 +35,7 @@ public class CompanyRepository implements ICompanyRepository {
             cstmt = databaseConnector.getConnection().prepareCall (sql);
             cstmt.setInt(1,dNumber);
             cstmt.execute();
-            ResultSet resultSet = cstmt.executeQuery();
+            ResultSet resultSet = cstmt.getResultSet();
 
             while (resultSet.next()) {
                 String dName = resultSet.getString("DName");
@@ -54,7 +54,7 @@ public class CompanyRepository implements ICompanyRepository {
     }
 
     @Override
-    public int UpdateDepartmentName(String dName, int dNumber) {
+    public int updateDepartmentName(String dName, int dNumber) {
         CallableStatement cstmt;
         try{
             String sql = "EXEC usp_UpdateDepartmentName ?,?";
@@ -70,7 +70,7 @@ public class CompanyRepository implements ICompanyRepository {
     }
 
     @Override
-    public int CreateDepartment(String dName, int mGrSSN) {
+    public int createDepartment(String dName, int mGrSSN) {
         CallableStatement cstmt;
         Date date = Date.valueOf(LocalDate.now());
         try{
