@@ -2,13 +2,14 @@ import be.Department;
 import dal.ICompanyRepository;
 import dal.database.CompanyRepository;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     private static ICompanyRepository companyRepository = new CompanyRepository();
     static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         while(true){
             System.out.println("1: Create Department");
@@ -41,6 +42,8 @@ public class Main {
                     showGetAllDepartments();
                     break;
             }
+            System.out.println("Enter any key to restart... ");
+            System.in.read();
         }
     }
 
