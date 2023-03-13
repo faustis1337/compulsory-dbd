@@ -72,7 +72,7 @@ public class CompanyRepository implements ICompanyRepository {
     }
 
     @Override
-    public void CreateDepartment(String dName, int mGrSSN) {
+    public int CreateDepartment(String dName, int mGrSSN) {
         CallableStatement cstmt;
         Date date = Date.valueOf(LocalDate.now());
         try{
@@ -82,9 +82,11 @@ public class CompanyRepository implements ICompanyRepository {
             cstmt.setInt(2,mGrSSN);
             cstmt.setDate( 3, date);
             cstmt.execute();
+            return mGrSSN;
         } catch (SQLException e) {
             System.out.println(e);
         }
+        return -1;
     }
 
     @Override

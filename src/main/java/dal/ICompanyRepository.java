@@ -10,5 +10,5 @@ public interface ICompanyRepository {
     List<Department> getAllDepartments();
     Department GetDepartmentByDNumber(int dNumber);
     int UpdateDepartmentName(String dName, int dNumber);
-    void CreateDepartment(String dName, int dgrSSN );
+    int CreateDepartment(String dName, int dgrSSN );
 }
