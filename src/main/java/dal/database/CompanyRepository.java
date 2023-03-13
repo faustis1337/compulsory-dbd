@@ -61,10 +61,8 @@ public class CompanyRepository implements ICompanyRepository {
             cstmt = databaseConnector.getConnection().prepareCall (sql);
             cstmt.setString(1,dName);
             cstmt.setInt(2,dNumber);
-            int rowsAffected = cstmt.executeUpdate();
-            if(rowsAffected>0){
-                return 1;
-            }
+            cstmt.executeUpdate();
+            return dNumber;
         } catch (SQLException e) {
             System.out.println(e);
         }
