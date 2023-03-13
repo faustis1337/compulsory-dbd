@@ -72,10 +72,8 @@ public class Main {
         if (department == null){
             System.out.println("Failed to get the department");
         }else {
-            System.out.println("Name");
+            System.out.println("Name: "+department.dName + " No: "+ department.dNumber + " MgrSSN: " + department.mgrSSN + " MgrStartDate: " +department.mgrStartDate + " EmpCount: "+ department.empCount);
         }
-
-
     }
 
 
