@@ -67,13 +67,17 @@ public class Main {
     public static void showGetDepartment(){
         System.out.println("Pls enter the new Department Number: ");
         int departmentNumber = scanner.nextInt();
-        if (companyRepository.getDepartmentByDNumber(departmentNumber)){
-            System.out.println("Department updated"+ departmentNumber);
+        Department department = companyRepository.getDepartmentByDNumber(departmentNumber);
+
+        if (department == null){
+            System.out.println("Failed to get the department");
         }else {
-            System.out.println("Failed to get the department!");
+            System.out.println("Name");
         }
+
+
     }
 
-   
+
 
 }
