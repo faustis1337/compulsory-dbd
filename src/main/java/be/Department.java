@@ -9,7 +9,7 @@ public class Department {
     private Date mgrStartDate;
     public int empCount;
 
-    public Department(String dName, int dNumber, int mgrSSN, Date mgrStartDate) {
+    public Department(String dName, int dNumber, int mgrSSN, Date mgrStartDate, int empCount) {
         this.dName = dName;
         this.dNumber = dNumber;
         this.mgrSSN = mgrSSN;

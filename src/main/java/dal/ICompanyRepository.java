@@ -12,4 +12,3 @@ public interface ICompanyRepository {
     void UpdateDepartmentName(String dName, int dNumber);
     void CreateDepartment(String dName, int dgrSSN );
 }
-}
